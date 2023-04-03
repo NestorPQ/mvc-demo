@@ -1,5 +1,6 @@
 <?php
 
+//  Las clases son básicamentes plantillas
 class Curso{
 
   //Atributo
