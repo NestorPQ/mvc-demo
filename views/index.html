@@ -21,9 +21,11 @@
       Cargar datos
     </button>
 
-    <button class="btn btn-success btn-sm" id="boton-pruebas">
-      Cargar datos
-    </button>
+    <span id="mensaje-carga" class="d-none">Cargando por favor espero... </span>
+
+    <!-- <button class="btn btn-success btn-sm" id="boton-pruebas">
+      Boton de pruebas
+    </button> -->
     <hr>  <!-- <hr> una linea -->
 
     <table class="table table-striped table-sm" id="tabla-cursos">
@@ -60,38 +62,44 @@
     $(document).ready(function (){
 
       function mostrarDatos(){
-      //  Comunicación asíncrona/AJAX con el controlador
-      $.ajax({
-        url: '../controllers/curso.controller.php',
-        type: 'POST',
-        data: {
-          operacion: 'listar'
-        },
-        dataType: 'JSON',
-        success: function(result){
-          if (result.length > 0){
-            const listaCursos = result;
+        //  Mostrar mensaje de carga
+        $("#mensaje-carga").removeClass("d-none")
 
-            //  Antes de ejecutar el recorrido de registros, reiniciar la tablas
-            $("#tabla-cursos tbody").html("")
+        //  Comunicación asíncrona/AJAX con el controlador
+        $.ajax({
+          url: '../controllers/curso.controller.php',
+          type: 'POST',
+          data: {
+            operacion: 'listar'
+          },
+          dataType: 'JSON',
+          success: function(result){
+            if (result.length > 0){
+              const listaCursos = result;
 
-            listaCursos.forEach(curso => {
+              //  Antes de ejecutar el recorrido de registros, reiniciar la tablas
+              $("#tabla-cursos tbody").html("")
 
-              //  Construimos una nueva fila
-              let nuevaFila = ``;
-              nuevaFila += `<tr>`;
-              nuevaFila += `<td>${curso['id']}</td>`;
-              nuevaFila += `<td>${curso['nombre']}</td>`;
-              nuevaFila += `<td>${curso['nivel']}</td>`;
-              nuevaFila += `<td>${curso['precio']}</td>`;
-              nuevaFila += `<td>${curso['horas']}</td>`;
-              nuevaFila += `</tr>`;
-              //  Agregamos la nueva fila al cuerpo de la tabla
-              $("#tabla-cursos tbody").append(nuevaFila)    
-            });
-          }
-        }  //  Fin de success
-      });  //  Fin de Ajax
+              listaCursos.forEach(curso => {
+
+                //  Construimos una nueva fila
+                let nuevaFila = ``;
+                nuevaFila += `<tr>`;
+                nuevaFila += `<td>${curso['id']}</td>`;
+                nuevaFila += `<td>${curso['nombre']}</td>`;
+                nuevaFila += `<td>${curso['nivel']}</td>`;
+                nuevaFila += `<td>${curso['precio']}</td>`;
+                nuevaFila += `<td>${curso['horas']}</td>`;
+                nuevaFila += `</tr>`;
+                //  Agregamos la nueva fila al cuerpo de la tabla
+                $("#tabla-cursos tbody").append(nuevaFila)    
+              });
+            }
+          },
+          complete: function(){
+            $("#mensaje-carga").addClass("d-none");
+          }  //  Fin de success
+        });  //  Fin de Ajax
       }  //  Fin mostrar datos
 
       //  Controlamos el botón
