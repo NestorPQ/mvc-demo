@@ -1,0 +1,35 @@
+{
+  "informacionpersonal" : {
+    "datos" : {
+      "apellidos" : "Huamán Espinoza",
+      "nombres"   : "Peter Yair",
+      "edad"      : 38,
+      "telefono"  : "99999999"
+    },
+    "mifamilia" : {
+      "esposa"  : "Makanaki",
+      "hijos"   :["El Bicho", "Osito Perú"],
+      "hermanas":["Botamee", "Tuu","Gaaaa"]
+    }
+  },
+  "formacion": {
+    "primaria"      :["Centro Piloto"],
+    "secundaria"    :["Centro Piloto Superior"]
+  },
+  "habilidades": {
+    "deportivas"  :{
+    "futbol"      :["Equipo A", "Los Gotitas"],
+    "karate"      :["Cinta Scosh", "Cinta masketing"]
+    },
+    "sociales"    :{
+      "interpersonales" :["Leder", "Leder 2", "Leder 3"]
+    },
+    "profesional" : {
+      "programador"   :{
+        "lenguajes"   :["PHP","C++","Python", "JS", "CSS","SQL"],
+        "basedatos"   :["MySQL", "MS SQL Server", "Oracle DB", "SQLite"],
+        "devmovil"    :[""]
+      }
+    }
+  }
+}
